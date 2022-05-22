@@ -6,6 +6,7 @@ from Home.models import Article
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 
+@csrf_exempt
 # Register
 def UserRegister(request):
     # Method Verification
