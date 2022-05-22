@@ -115,6 +115,7 @@ def GetBlogByTitle(request, title):
     return response
 
 
+@csrf_exempt
 @login_required(login_url='/api/v1/login')
 # Post blog authored by username
 def PostBlog(request):
