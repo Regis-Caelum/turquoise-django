@@ -75,15 +75,13 @@ WSGI_APPLICATION = 'TurquoiseAuto.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': 'ec2-3-229-161-70.compute-1.amazonaws.com',
-        'NAME': 'd55ou67tum4e3m',
-        'USER': 'hhftkvekdinyvy',
-        'PASSWORD': 'b40ad96e30d8bc239cc8084e13c76cd423aa3beb135e15633e96fe2bdd84c718'
-        # 'HOST': os.environ.get('DATABASE_URL'),
-        # 'DATABASE': os.environ.get('DATABASE'),
-        # 'USER': os.environ.get('USER'),
-        # 'PASSWORD': os.environ.get('PASSWORD'),
+        # 'ENGINE': 'django.db.backends.postgresql',
+        # 'HOST': 'ec2-3-229-161-70.compute-1.amazonaws.com',
+        # 'NAME': 'd55ou67tum4e3m',
+        # 'USER': 'hhftkvekdinyvy',
+        # 'PASSWORD': 'b40ad96e30d8bc239cc8084e13c76cd423aa3beb135e15633e96fe2bdd84c718'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

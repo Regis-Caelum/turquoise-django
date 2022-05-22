@@ -52,6 +52,10 @@ def UserLogin(request):
             response.status_code = 401
             return response
 
+        response = JsonResponse({'success': False, 'error': 'Invalid input'})
+        response.status_code = 400
+        return response
+
     response = JsonResponse({'success': False, 'error': 'HttpMethodNotAllowed'})
     response.status_code = 405
     return response
@@ -72,7 +76,7 @@ def GetBlogs(request):
     # Method Verification
     if request.method == 'GET':
         # Retrieving all articles
-        articles = list(Article.objects.all())
+        articles = list(Article.objects.all().values())
 
         response = JsonResponse({'success': True, 'payload': articles, 'error': None})
         response.status_code = 200
@@ -129,7 +133,8 @@ def PostBlog(request):
             author = User.objects.get(username=requestJson['username'])
 
             # Creating Article
-            article = Article.objects.create(title=requestJson['title'], author=author, content=requestJson['content'])
+            article = Article.objects.create(title=requestJson['title'], content=requestJson['content'])
+            article.author.add(author)
             article.save()
 
             response = JsonResponse({'success': True, 'error': None})
@@ -155,7 +160,7 @@ def RegistrationValidation(userData):
 
 # Article DTO validation Function
 def ArticleValidation(articleData):
-    if articleData['title'] == '' or articleData['title'] is None or articleData['content'] != '' or articleData[
+    if articleData['title'] == '' or articleData['title'] is None or articleData['content'] == '' or articleData[
         'content'] is None or articleData['username'] == '' or articleData['username'] is None:
         return False
     return True
