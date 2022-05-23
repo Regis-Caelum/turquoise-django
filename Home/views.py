@@ -47,7 +47,7 @@ def UserLogin(request):
 
             if user is not None:
                 login(request, user)
-                response = JsonResponse({'success': True, 'error': None})
+                response = JsonResponse({'success': True, 'error': None, 'username': user.username})
                 response.status_code = 200
                 return response
 
