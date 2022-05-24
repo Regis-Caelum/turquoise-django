@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Home.apps.HomeConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +48,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'TurquoiseAuto.urls'
 
@@ -75,13 +79,13 @@ WSGI_APPLICATION = 'TurquoiseAuto.wsgi.application'
 
 DATABASES = {
     'default': {
-        # 'ENGINE': 'django.db.backends.postgresql',
-        # 'HOST': os.environ.get('DATABASE_URL'),
-        # 'NAME': os.environ.get('DATABASE'),
-        # 'USER': os.environ.get('USER'),
-        # 'PASSWORD': os.environ.get('PASSWORD')
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3'
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DATABASE_URL'),
+        'NAME': os.environ.get('DATABASE'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD')
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3'
     }
 }
 
